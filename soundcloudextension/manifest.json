@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "Remove SoundCloud Reposts",
+    "description": "Remove SoundCloud Reposts",
+    "version": "1.0",
+    "action": {
+        "default_popup": "main.html",
+        "default_icon": "pranked.png"
+    },
+    "permissions": ["storage"],
+    "content_scripts": [{
+        "run_at": "document_idle",
+        "js": ["main.js"],
+        "matches": ["https://soundcloud.com/stream"]
+    }]
+}
