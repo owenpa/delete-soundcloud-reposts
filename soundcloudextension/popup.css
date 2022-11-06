@@ -26,7 +26,7 @@ p {
     margin: 0;
 }
 
-#enabled {
+#running {
     position: relative;
     background-color: #4CAF50;
     border: none;
@@ -41,7 +41,7 @@ p {
     cursor: pointer;
 }
 
-#disabled {
+#notrunning {
     position: relative;
     background-color: #b33333;
     border: none;
@@ -56,8 +56,8 @@ p {
     cursor: pointer;
 }
 
-#enabled:after,
-#disabled:after {
+#running:after,
+#notrunning:after {
     content: "";
     background: #f1f1f1;
     display: block;
@@ -70,12 +70,75 @@ p {
     transition: all 0.8s
 }
 
-#enabled:active:after,
-#disabled:active:after {
+#running:active:after,
+#notrunning:active:after {
     padding: 0;
     margin: 0;
     opacity: 1;
     transition: 0s
+}
+
+.container {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 16px;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    line-height: 30px;
+    top: 8px;
+    padding-top: 3px;
+    padding-bottom: 12px;
+    padding-right: 10px;
+    vertical-align: middle;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #fff;
+}
+
+.container:hover input~.checkmark {
+    background-color: #bbb;
+}
+
+.container input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 .hide {
