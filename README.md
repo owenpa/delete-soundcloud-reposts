@@ -15,4 +15,4 @@ Once everything is done I will be looking towards getting this extension on the 
 - Plenty of time spent in the Performance tab of the "Developer Tools" experimenting and reducing the amount of time 
 it took to find the reposts and delete them. (from relatively high CPU usage and ~1s down to ~0.1ms)
 
-###### (In the future I will be looking to replace the popup menu, icon, possibly add a badge to the icon to display the number of currently removed reposts, toggle to include/exclude reposts by the song creator, toggle to include/exclude tracks that the creator is a feature in)
+###### (In the future I will be looking to possibly adding a badge to the icon to display the number of currently removed reposts and saving the configuration options after closing the extension.)
