@@ -12,5 +12,8 @@
         "run_at": "document_idle",
         "js": ["main.js"],
         "matches": ["https://soundcloud.com/feed"]
-    }]
+    }],
+    "background": {
+        "service_worker": "badge.js"
+    }
 }
