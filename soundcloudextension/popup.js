@@ -58,7 +58,6 @@ function loadOptions() {
 function sendMessage(message) {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, { settings: [message[0], message[1], message[2]] }, function(response) {
-            console.debug(response)
             return true;
         });
     });
