@@ -11,6 +11,6 @@
     "content_scripts": [{
         "run_at": "document_idle",
         "js": ["main.js"],
-        "matches": ["https://soundcloud.com/stream"]
+        "matches": ["https://soundcloud.com/feed"]
     }]
 }
