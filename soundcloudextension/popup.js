@@ -31,11 +31,11 @@ function toggleEnabled(status, button = null) {
             document.querySelector("#reposter").checked = status[1]
             document.querySelector("#featuring").checked = status[2]
         })
-        sendMessage(status)
+        sendValues(status)
     } else {
         document.querySelector("#reposter").checked = status[1]
         document.querySelector("#featuring").checked = status[2]
-        sendMessage(status)
+        sendValues(status)
     }
 
 
@@ -55,11 +55,9 @@ function loadOptions() {
     })
 }
 
-function sendMessage(message) {
+function sendValues(message) {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, { settings: [message[0], message[1], message[2]] }, function(response) {
-            return true;
-        });
+        chrome.tabs.sendMessage(tabs[0].id, { settings: [message[0], message[1], message[2]] });
     });
 
 }
