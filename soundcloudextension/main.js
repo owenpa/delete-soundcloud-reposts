@@ -2,7 +2,7 @@ let deleteStatus;
 const sleep = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
 };
-
+let number = 0;
 async function delRepost(reposts = true, features = true) {
     let stream = document.querySelector(".soundList__item");
     if (stream != null) {
@@ -11,6 +11,7 @@ async function delRepost(reposts = true, features = true) {
                 let repost = document.querySelectorAll(".soundContext__repost")
                 repost.forEach((post) => {
                     post.closest(".soundList__item").remove()
+                    updateBadge(number++)
                 })
                 await sleep(1000);
             }
@@ -22,6 +23,7 @@ async function delRepost(reposts = true, features = true) {
                     let artist = post.closest(".sound").querySelector(".soundTitle__usernameText").textContent.toLowerCase()
                     if (artist.includes(reposter)) {
                         post.closest(".soundList__item").remove()
+                        updateBadge(number++)
                     }
                 })
                 await sleep(1000);
@@ -35,11 +37,13 @@ async function delRepost(reposts = true, features = true) {
                         let title = post.closest(".sound").querySelector(".soundTitle__title").textContent.toLowerCase();
                         if (title.includes(artist)) {
                             post.closest(".soundList__item").remove()
+                            updateBadge(number++)
                         }
                     } else {
                         let title = post.closest(".visualSound").querySelector(".soundTitle__title").title.toLowerCase(); // for the songs with special backgrounds
                         if (title.includes(artist)) {
                             post.closest(".soundList__item").remove()
+                            updateBadge(number++)
                         }
                     }
                 })
@@ -57,6 +61,7 @@ async function delRepost(reposts = true, features = true) {
 
                         } else {
                             post.closest(".soundList__item").remove()
+                            updateBadge(number++)
                         }
                     } else {
                         let title = post.closest(".visualSound").querySelector(".soundTitle__title").title.toLowerCase();
@@ -64,6 +69,7 @@ async function delRepost(reposts = true, features = true) {
 
                         } else {
                             post.closest(".soundList__item").remove()
+                            updateBadge(number++)
                         }
                     }
                 })
@@ -72,12 +78,16 @@ async function delRepost(reposts = true, features = true) {
         }
     }
 }
+
+function updateBadge(number) {
+    chrome.runtime.sendMessage({ greeting: number.toString() })
+}
+
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         deleteStatus = request.settings[0]
         repostStatus = request.settings[1]
         featureStatus = request.settings[2]
         delRepost(repostStatus, featureStatus);
-        sendResponse("sent")
     }
 );
